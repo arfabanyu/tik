@@ -1,0 +1,197 @@
+/* Import font (opsional) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Wrapper utama game */
+#game-wrapper {
+  width: 100%;
+  max-width: 800px; /* Lebar game */
+  height: 600px; /* Tinggi game */
+  background-color: #000;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Kontrol layar (hanya satu yang 'active' / terlihat) */
+.screen {
+  width: 100%;
+  height: 100%;
+  display: none; /* Sembunyi secara default */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.screen.active {
+  display: flex; /* Tampilkan layar yang aktif */
+}
+
+/* Styling untuk layar Menu dan Ending */
+.screen-container {
+  padding: 40px;
+  text-align: center;
+  background: rgba(10, 10, 10, 0.8);
+  border-radius: 10px;
+  max-width: 90%;
+}
+.screen-container h1 {
+  color: #4e9af1;
+  margin-bottom: 15px;
+}
+.screen-container p {
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+/* Tombol */
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #4e9af1;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.2s;
+}
+button:hover {
+  background-color: #3a7bc8;
+}
+button#restart-game-btn,
+button#back-to-menu-btn {
+  background-color: #555;
+}
+button#restart-game-btn:hover,
+button#back-to-menu-btn:hover {
+  background-color: #777;
+}
+
+.character-select {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ===== STYLING LAYAR GAME UTAMA ===== */
+#game-screen {
+  justify-content: flex-end; /* Dorong dialog box ke bawah */
+}
+
+/* 1. Area Visual (Background & Karakter) */
+#scene-visual {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+#scene-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#character-sprites {
+  position: absolute;
+  bottom: 0; /* Karakter berdiri di dasar */
+  width: 100%;
+  height: 100%;
+}
+.char-sprite {
+  position: absolute;
+  bottom: 0;
+  height: 90%; /* Tinggi karakter (sesuaikan) */
+  /* Sembunyikan semua sprite dulu */
+  display: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Posisi Karakter (bisa ditambah) */
+.char-sprite.pos-left {
+  transform: translateX(-20%);
+}
+.char-sprite.pos-center {
+  transform: translateX(50%);
+}
+.char-sprite.pos-right {
+  transform: translateX(120%);
+}
+
+/* Sprite yang 'active' akan terlihat */
+.char-sprite.active {
+  display: block;
+  opacity: 1;
+}
+/* Sprite yang tidak 'active' tapi masih di scene */
+.char-sprite.inactive {
+  display: block;
+  opacity: 0.6;
+  filter: brightness(0.7);
+}
+
+/* 2. Kotak Dialog */
+#dialog-box {
+  position: relative;
+  z-index: 10;
+  width: 95%;
+  height: 180px; /* Tinggi kotak dialog */
+  background-color: rgba(0, 0, 0, 0.85);
+  border: 3px solid #4e9af1;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#speaker-name {
+  background-color: #4e9af1;
+  color: #fff;
+  font-weight: 700;
+  padding: 5px 15px;
+  position: absolute;
+  top: -20px;
+  left: 30px;
+  border-radius: 5px;
+}
+
+#dialog-text {
+  font-size: 16px;
+  flex-grow: 1;
+  line-height: 1.5;
+}
+
+#choices-box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.choice-btn {
+  background-color: #333;
+  border: 1px solid #4e9af1;
+  width: 100%;
+}
+.choice-btn:hover {
+  background-color: #4e9af1;
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "id": "kaka1",
+    "name": "Kak Raka",
+    "role": "Ketua OSIS",
+    "portraitText": "Raka",
+    "scenes": [
+      {
+        "text": "Ada kendala di acara pagi ini: sound system mendadak bermasalah. Pilihanmu?",
+        "choices": [
+          {
+            "text": "Tenang, panggil teknisi dan atur ulang jadwal",
+            "impact": 1
+          },
+          { "text": "Ajak semua untuk improvisasi; keep going", "impact": 1 },
+          { "text": "Panikan dulu, tunda acara", "impact": 0 }
+        ]
+      },
+      {
+        "text": "Berkas laporan harus diserahkan. Kamu mau…",
+        "choices": [
+          { "text": "Bekerja lembur malam ini biar rapi", "impact": 1 },
+          { "text": "Kirim seadanya, nanti revisi", "impact": 0 },
+          {
+            "text": "Minta tolong teman tanpa pembagian tugas jelas",
+            "impact": 0
+          }
+        ]
+      },
+      {
+        "text": "Ada anggota yang down karena kritik publik. Tanggapanmu?",
+        "choices": [
+          { "text": "Buat ruang bicara, beri dukungan personal", "impact": 1 },
+          { "text": "Mengabaikan, fokus tugas", "impact": 0 },
+          { "text": "Meneruskan kritik ke pihak sekolah", "impact": 0 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kaka2",
+    "name": "Kak Indra",
+    "role": "Sekretaris",
+    "portraitText": "Indra",
+    "scenes": [
+      {
+        "text": "Data peserta lomba berantakan. Kamu akan…",
+        "choices": [
+          { "text": "Sistematis ulang data & backup", "impact": 1 },
+          { "text": "Menyerah dan pilih cara cepat", "impact": 0 },
+          { "text": "Serahkan ke orang lain tanpa cek", "impact": 0 }
+        ]
+      },
+      {
+        "text": "Rapat penting molor karena konflik jadwal. Solusimu?",
+        "choices": [
+          { "text": "Fleksibel, cari kompromi", "impact": 1 },
+          { "text": "Tegas: rapat lanjut walau sepi", "impact": 0 },
+          { "text": "Batalin saja, nanti urus sendiri", "impact": 0 }
+        ]
+      },
+      {
+        "text": "Publikasi acara butuh caption yang mewakili. Kamu…",
+        "choices": [
+          { "text": "Ukur tone, minta masukan tim", "impact": 1 },
+          { "text": "Tulisan standar tanpa rasa", "impact": 0 },
+          { "text": "Minta influencer ikut for free", "impact": 0 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kaka3",
+    "name": "Kak Sinta",
+    "role": "Bendahara",
+    "portraitText": "Sinta",
+    "scenes": [
+      {
+        "text": "Anggaran acara tipis. Rencanamu?",
+        "choices": [
+          {
+            "text": "Susun anggaran ulang dan cari sponsor kecil",
+            "impact": 1
+          },
+          { "text": "Potong semua kebutuhan penting", "impact": 0 },
+          { "text": "Pinjam dana sebentar tanpa rencana", "impact": 0 }
+        ]
+      },
+      {
+        "text": "Nota hilang mendadak. Kamu…",
+        "choices": [
+          { "text": "Telusuri & minta bukti ulang ke vendor", "impact": 1 },
+          { "text": "Tulis ulang berdasarkan ingatan", "impact": 0 },
+          { "text": "Biarkan tanpa bukti", "impact": 0 }
+        ]
+      },
+      {
+        "text": "Sebuah donasi masuk tapi donor meminta anonim. Keputusan?",
+        "choices": [
+          {
+            "text": "Terima dengan terima kasih, laporkan transparan",
+            "impact": 1
+          },
+          { "text": "Tolak takut repot", "impact": 0 },
+          { "text": "Terima tapi catat saja", "impact": 0 }
+        ]
+      }
+    ]
+  }
+]

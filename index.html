@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TIK Experience</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="game-wrapper">
+      <div id="start-screen" class="screen active">
+        <div class="screen-container">
+          <h1>TIK Experience</h1>
+          <p>Pilih Karakter</p>
+          <div class="character-select">
+            <button class="char-button" data-char="samy">
+              Fatih Ramasamy Putra
+            </button>
+            <button class="char-button" data-char="khaila">
+              Khaila Ayuputri Arief
+            </button>
+            <button class="char-button" data-char="faiz">
+              M Faiz Refanno
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="game-screen" class="screen">
+        <div id="scene-visual">
+          <img
+            id="scene-bg"
+            src="./assets/bg_ruang_osis.png"
+            alt="Background"
+          />
+          <div id="character-sprites">
+            <img
+              id="sprite-banyu"
+              class="char-sprite"
+              src="./assets/banyu_normal.png"
+              alt="Banyu"
+            />
+            <img
+              id="sprite-lia"
+              class="char-sprite"
+              src="./assets/lia_senyum.png"
+              alt="Lia"
+            />
+            <img
+              id="sprite-ajeng"
+              class="char-sprite"
+              src="./assets/ajeng_bingung.png"
+              alt="Ajeng"
+            />
+            <img
+              id="sprite-raka"
+              class="char-sprite"
+              src="./assets/raka_serius.png"
+              alt="Kak Raka"
+            />
+            <img
+              id="sprite-sinta"
+              class="char-sprite"
+              src="./assets/sinta_ramah.png"
+              alt="Kak Sinta"
+            />
+            <img
+              id="sprite-indra"
+              class="char-sprite"
+              src="./assets/indra_mikir.png"
+              alt="Kak Indra"
+            />
+          </div>
+        </div>
+
+        <div id="dialog-box">
+          <div id="speaker-name">Banyu</div>
+          <div id="dialog-text">
+            Ini adalah tempat untuk dialog cerita. Klik untuk melanjutkan atau
+            pilih jawaban.
+          </div>
+          <div id="choices-box"></div>
+        </div>
+      </div>
+
+      <div id="ending-screen" class="screen">
+        <div class="screen-container">
+          <h1 id="ending-title">Good Ending</h1>
+          <p id="ending-text">Deskripsi ending akan muncul di sini...</p>
+          <button id="show-farewell-btn">Lihat Pesan Perpisahan</button>
+          <button id="back-to-menu-btn">Kembali ke Menu</button>
+        </div>
+      </div>
+
+      <div id="farewell-screen" class="screen">
+        <div class="screen-container">
+          <h1>Terima Kasih, Kakak-Kakak!</h1>
+          <p>
+            Untuk Kak Raka, Kak Sinta, dan Kak Indra...
+            <br /><br />
+            Terima kasih banyak atas semua bimbingan, kesabaran, dan ilmu yang
+            telah kalian berikan selama di OSIS, khususnya di tim PubDekDok.
+            <br /><br />
+            Semua kenangan, dari yang pusing dikejar *deadline* sampai yang
+            tertawa bareng, akan selalu kami ingat. Semoga sukses selalu untuk
+            perjalanan kalian selanjutnya!
+            <br /><br />
+            Dari kami,
+            <br />
+            <b>Banyu, Lia, Ajeng & Segenap Tim</b>
+          </p>
+          <button id="restart-game-btn">Main Lagi</button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

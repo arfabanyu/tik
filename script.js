@@ -1,0 +1,722 @@
+// ====== 1. DATA GAME (Database Cerita) ======
+// Di sinilah Anda menulis semua cerita, dialog, dan pilihan.
+
+const gameData = {
+  // --- Cerita Kak Raka ---
+  samy: {
+    name: 'Kak Samy',
+    scenes: [
+      // --- SCENE 0: KONTEKS AWAL (Kabur dari Tugas) ---
+      {
+        bg: './assets/bg_lapangan.png', // Latar di luar, tapi Samy canggung
+        sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
+        speaker: 'Kak Samy',
+        dialog:
+          '(Batin) Aduh, panas. Males banget sama dokumentasi. Mending aku *farming* di Roblox sebentar. Di mana ya tempat yang aman dari Kak Khaila dan adek-adek? Ah, WC paling ujung sekolah aja deh, sepi.',
+        choices: [
+          {
+            text: 'Lanjut (Pergi ke WC)',
+            impact: 0,
+            nextScene: 1,
+          },
+        ],
+      },
+
+      // --- SCENE 1: Momen Krusial di WC ---
+      {
+        bg: './assets/bg_wc.png', // Latar WC
+        sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
+        speaker: 'Narator',
+        dialog:
+          "Kak Samy sedang asyik teriak-teriak karena kalah war di Roblox. Tiba-tiba, temannya, Jerry, masuk WC dan bertanya, 'Sam, ngapain lu teriak-teriak?'",
+        choices: [
+          {
+            text: 'Jawab dengan suara canggung pelan (karena Samy memang canggung).',
+            impact: 1,
+            nextScene: 2, // Meminimalkan kesalahpahaman
+          },
+          {
+            text: 'Jawab dengan teriak karena frustrasi (Fokus ke Roblox).',
+            impact: -1,
+            nextScene: 3, // Memperbesar kesalahpahaman
+          },
+        ],
+      },
+
+      // --- SCENE 2: Suara Pelan (Mendapatkan Keuntungan) ---
+      {
+        bg: './assets/bg_wc.png',
+        sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
+        speaker: 'Kak Samy',
+        dialog:
+          '*Berbisik* Jerry, aku lagi war Roblox, jangan berisik. Aku kabur dari tugas dokum.',
+        choices: [{ text: 'Lanjut', impact: 1, nextScene: 4 }],
+      },
+
+      // --- SCENE 3: Suara Keras (Menciptakan Kesalahpahaman) ---
+      {
+        bg: './assets/bg_wc.png',
+        sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
+        speaker: 'Kak Samy',
+        dialog:
+          'JERRY! Tadi dia bunuh aku pakai *laser*! Awas lu! *Jerry hanya geleng-geleng kepala*. (Teriakan Samy terdengar sampai luar)',
+        choices: [{ text: 'Lanjut', impact: -1, nextScene: 4 }],
+      },
+
+      // --- SCENE 4: Lia Muncul ---
+      {
+        bg: './assets/bg_wc_luar.png', // Latar luar WC
+        sprites: [{ id: 'sprite-lia', pos: 'left', status: 'active' }],
+        speaker: 'Lia',
+        dialog:
+          '*Lia baru saja lewat, mendengar teriakan dari dalam WC*. Ada suara Kak Samy? Sama siapa dia? Kok teriak-teriak gitu? *Lia mendekat penuh inisiatif*',
+        choices: [
+          {
+            text: 'Lanjut',
+            impact: 0,
+            nextScene: 5, // Momen klarifikasi/gosip
+          },
+        ],
+      },
+
+      // --- SCENE 5: Konfrontasi Lia ---
+      {
+        bg: './assets/bg_wc_luar.png',
+        sprites: [
+          { id: 'sprite-samy', pos: 'center', status: 'active' },
+          { id: 'sprite-lia', pos: 'left', status: 'active' },
+        ],
+        speaker: 'Lia',
+        dialog:
+          'Kak Samy! Kenapa kakak di sini?! Aku denger kakak teriak-teriak sama Jerry dari dalam? Kakak... lagi ngapain?',
+        choices: [
+          {
+            text: "Klarifikasi Canggung: 'Aku... aku lagi main Roblox, Lia.' (Sambil senyum-senyum pegang hidung)",
+            impact: 2,
+            nextScene: 6, // Good Ending Track
+          },
+          {
+            text: "Kabur: 'A-aku duluan! Nanti aku traktir deh!' (Mengulangi sifat lama)",
+            impact: -2,
+            nextScene: 7, // Bad Ending Track
+          },
+        ],
+      },
+
+      // --- SCENE 6: Klarifikasi Berhasil (Good Track) ---
+      {
+        bg: './assets/bg_koridor.png',
+        sprites: [
+          { id: 'sprite-samy', pos: 'center', status: 'active' },
+          { id: 'sprite-lia', pos: 'left', status: 'active' },
+        ],
+        speaker: 'Lia',
+        dialog:
+          '*Ketawa kecil* Oohh, main Roblox! Pantesan. Aku kira... *Lia langsung ngakak* Yaudah deh, Kak. Mending balik ke tugas. Jangan kabur-kabur terus, nanti diomelin Kak Khaila.',
+        choices: [{ text: 'Lanjut', impact: 1, nextScene: 8 }],
+      },
+
+      // --- SCENE 7: Kabur & Gosip Menyebar (Bad Track) ---
+      {
+        bg: './assets/bg_koridor.png',
+        sprites: [
+          { id: 'sprite-lia', pos: 'center', status: 'active' },
+          { id: 'sprite-banyu', pos: 'right', status: 'active' },
+        ],
+        speaker: 'Lia',
+        dialog:
+          'Banyu! Banyu! Tadi Kak Samy kabur dari WC, mukanya panik! Jangan-jangan beneran dia lagi ngapa-ngapain sama Jerry! *Lia berbisik, tapi kedengaran cempreng*',
+        choices: [{ text: 'Lanjut', impact: 0, nextScene: 9 }],
+      },
+
+      // --- SCENE 8: Epilog Good Ending (Klarifikasi Berhasil) ---
+      {
+        bg: './assets/bg_lapangan.png',
+        sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
+        speaker: 'Narator',
+        dialog:
+          'Lia tidak menyebar gosip karena Kak Samy memilih jujur dan bertanggung jawab (setelah main Roblox). Kak Samy kembali ke lapangan dan melanjutkan tugas. Gosip *gay* berhasil dibungkam oleh kejujuran yang canggung. TIK tetap solid.',
+        isEnding: true,
+      },
+
+      // --- SCENE 9: Epilog Bad Ending (Jadi Bahan Candan) ---
+      {
+        bg: './assets/bg_lapangan.png',
+        sprites: [
+          { id: 'sprite-banyu', pos: 'left', status: 'active' },
+          { id: 'sprite-ajeng', pos: 'center', status: 'active' },
+          { id: 'sprite-khaila', pos: 'right', status: 'active' },
+        ],
+        speaker: 'Narator',
+        dialog:
+          "Gosip menyebar cepat di tim TIK. Setiap Kak Samy muncul, Lia, Banyu, bahkan Ajeng, akan melirik dan tertawa kecil. 'Der Refan' (Kak Faiz) ikut-ikutan menyindirnya. Kak Samy, yang canggung, hanya bisa tersenyum dan memegang hidung. Ia akan menjadi bahan candaan TIK hingga akhir kepengurusan.",
+        isEnding: true,
+      },
+    ],
+  },
+
+  // --- Cerita Kak Sinta (Dummy) ---
+  khaila: {
+    name: 'Khaila',
+    scenes: [
+      {
+        bg: './assets/bg_ruang_osis.png',
+        sprites: [],
+        speaker: '',
+        dialog: 'Di Sabtu siang yang terik di sekolah.',
+        choices: [
+          {
+            text: 'Lanjut',
+            impact: 0,
+            nextScene: 1, // Mendapatkan informasi krusial
+          },
+        ],
+      },
+      // --- SCENE 0: Persiapan dan Keluhan Mager ---
+      {
+        bg: './assets/bg_ruang_osis.png',
+        sprites: [{ id: 'sprite-khaila', pos: 'center', status: 'active' }],
+        speaker: 'Khaila',
+        dialog:
+          '(Duh, panas banget. Males banget ke lapangan. Mana tuh Samy? Ngilang mulu nih anak.)',
+        choices: [
+          {
+            text: 'Telfon Samy.',
+            impact: 1,
+            nextScene: 2, // Mendapatkan informasi krusial
+          },
+          {
+            text: 'Langsung ke lapangan.',
+            impact: 0,
+            nextScene: 6, // Langsung ke lapangan tanpa persiapan
+          },
+        ],
+      },
+
+      // --- SCENE 1: Omelin Kak Samy (Good Track) ---
+      {
+        bg: './assets/bg_ruang_osis.png',
+        sprites: [
+          { id: 'sprite-khaila', pos: 'center', status: 'active' },
+          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Kak Samy hanya dalam dialog
+        ],
+        speaker: 'Khaila',
+        dialog: 'Halo, Sam! Lu di mana?! Ini udah mulai!',
+        choices: [
+          { text: 'Lanjut', impact: 0, nextScene: 3 }, // Poin karena tahu info tripod
+        ],
+      },
+      {
+        bg: './assets/bg_ruang_osis.png',
+        sprites: [
+          { id: 'sprite-khaila', pos: 'center', status: 'active' },
+          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Kak Samy hanya dalam dialog
+        ],
+        speaker: 'Samy',
+        dialog: 'Lagi jajan bentar di bang Memet.',
+        choices: [
+          { text: 'Lanjut', impact: 0, nextScene: 4 }, // Poin karena tahu info tripod
+        ],
+      },
+      {
+        bg: './assets/bg_ruang_osis.png',
+        sprites: [
+          { id: 'sprite-khaila', pos: 'center', status: 'active' },
+          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Kak Samy hanya dalam dialog
+        ],
+        speaker: 'Khaila',
+        dialog: 'Ya udah, cepetan! ini voli ga ada yang dokum.',
+        choices: [
+          { text: 'Lanjut', impact: 0, nextScene: 5 }, // Poin karena tahu info tripod
+        ],
+      },
+      {
+        bg: './assets/bg_ruang_osis.png',
+        sprites: [
+          { id: 'sprite-khaila', pos: 'center', status: 'active' },
+          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Kak Samy hanya dalam dialog
+        ],
+        speaker: 'Khaila',
+        dialog: '*Matiin telepon*',
+        choices: [
+          { text: 'Lanjut ke lapangan', impact: 0, nextScene: 6 }, // Poin karena tahu info tripod
+        ],
+      },
+
+      // --- SCENE 2: Langsung Lapangan (Bad Track) ---
+      {
+        bg: './assets/bg_lapangan.png',
+        sprites: [
+          { id: 'sprite-khaila', pos: 'center', status: 'active' },
+          { id: 'sprite-banyu', pos: 'left', status: 'inactive' },
+          { id: 'sprite-lia', pos: 'right', status: 'active' },
+        ],
+        speaker: 'Khaila',
+        dialog: '*Dokum IG Story Futsal Wilhelmina*',
+        choices: [
+          {
+            text: 'Lanjut.',
+            impact: 0,
+            nextScene: 7, // Mengabaikan peringatan
+          },
+        ],
+      },
+      {
+        bg: './assets/bg_lapangan.png',
+        sprites: [
+          { id: 'sprite-khaila', pos: 'center', status: 'active' },
+          { id: 'sprite-banyu', pos: 'left', status: 'inactive' },
+          { id: 'sprite-lia', pos: 'right', status: 'active' },
+        ],
+        speaker: 'Khaila',
+        dialog: 'Keknya kejauhan deh...',
+        choices: [
+          {
+            text: 'Maju',
+            impact: 1,
+            nextScene: 8, // Poin karena peduli
+          },
+          {
+            text: 'Tetep di tempat.',
+            impact: 0,
+            nextScene: 12, // Mengabaikan peringatan
+          },
+        ],
+      },
+      {
+        bg: './assets/bg_lapangan.png',
+        sprites: [
+          { id: 'sprite-khaila', pos: 'center', status: 'active' },
+          { id: 'sprite-banyu', pos: 'left', status: 'inactive' },
+          { id: 'sprite-lia', pos: 'right', status: 'active' },
+        ],
+        speaker: 'Khaila',
+        dialog: '*Maju*',
+        choices: [
+          {
+            text: 'Lanjut',
+            impact: 0,
+            nextScene: 9, // Poin karena peduli
+          },
+        ],
+      },
+      {
+        bg: './assets/bg_lapangan.png',
+        sprites: [
+          { id: 'sprite-khaila', pos: 'center', status: 'active' },
+          { id: 'sprite-banyu', pos: 'left', status: 'inactive' },
+          { id: 'sprite-lia', pos: 'right', status: 'active' },
+        ],
+        speaker: 'Pemain Bola',
+        dialog: 'AWAAASSS!!!',
+        choices: [
+          {
+            text: 'Lanjut',
+            impact: 0,
+            nextScene: 10, // Poin karena peduli
+          },
+        ],
+      },
+      {
+        bg: './assets/bg_lapangan.png',
+        sprites: [
+          { id: 'sprite-khaila', pos: 'center', status: 'active' },
+          { id: 'sprite-banyu', pos: 'left', status: 'inactive' },
+          { id: 'sprite-lia', pos: 'right', status: 'active' },
+        ],
+        speaker: '',
+        dialog: '*DUAARRRR!!!*',
+        choices: [
+          {
+            text: 'Lanjut',
+            impact: 0,
+            nextScene: 11, // Poin karena peduli
+          },
+        ],
+      },
+      // --- SCENE 8: Epilog Bad Ending (Kegebok) ---
+      {
+        bg: './assets/bg_rumahsakit.png', // Ganti background
+        sprites: [{ id: 'sprite-khaila', pos: 'center', status: 'active' }],
+        speaker: 'Narator',
+        dialog:
+          'Khaila yang terkejut terkena gebok di muka sehingga membuat kacamatanya patah dan salah satu matanya memerah, langsung dilarikan ke RS oleh teman-temannya.',
+        isEnding: true,
+      },
+      // --- SCENE 7: Epilog Good Ending (Aman) ---
+      {
+        bg: './assets/bg_lapangan.png',
+        sprites: [{ id: 'sprite-khaila', pos: 'center', status: 'active' }],
+        speaker: 'Narator',
+        dialog:
+          'Khaila yang terkejut tiba-tiba ada bola melayang melewati tepat di depan wajahnya langsung merasa lega dan bersyukur karena tidak jadi maju mendekati permainan untuk mengambil dokum yang lebih bagus.',
+        isEnding: true,
+      },
+    ],
+  },
+
+  // --- Cerita Kak Indra (Dummy) ---
+  faiz: {
+    name: 'Kak Faiz',
+    scenes: [
+      // --- SCENE 0: KONTEKS AWAL (Narator) ---
+      {
+        bg: './assets/bg_sekolah_pagi.png',
+        sprites: [],
+        speaker: 'Narator',
+        dialog:
+          'Di hari Jumat malam yang meriah, TIK kelas 11 dan Kak Faiz bertugas mendokumentasikan Latihan Dasar Kepemimpinan Siswa (LDKS).',
+        choices: [
+          {
+            text: 'Lanjut',
+            impact: 0,
+            nextScene: 1,
+          },
+        ],
+      },
+
+      // --- SCENE 1: Penolakan Tugas (Konfrontasi di tempat) [AWAL BARU] ---
+      {
+        bg: './assets/bg_ruang_osis.png',
+        sprites: [
+          { id: 'sprite-faiz', pos: 'center', status: 'active' },
+          { id: 'sprite-lia', pos: 'left', status: 'active' },
+        ],
+        speaker: 'Lia',
+        dialog: 'Kak Faiz, kakak nanti IGS ya.',
+        choices: [
+          {
+            text: '*Ngangguk*',
+            impact: -1,
+            nextScene: 2,
+          },
+          {
+            text: 'Iya, iya, nanti saya IGS.',
+            impact: 1,
+            nextScene: 5, // Lompat ke Narator: Faiz Bekerja
+          },
+        ],
+      },
+
+      // --- SCENE 2: Pertengkaran dan Lia Ngambek ---
+      {
+        bg: './assets/bg_ruang_osis.png',
+        sprites: [
+          { id: 'sprite-faiz', pos: 'center', status: 'active' },
+          { id: 'sprite-lia', pos: 'left', status: 'active' },
+        ],
+        speaker: 'Kak Faiz',
+        dialog: '*Kabur-kaburan*',
+        choices: [{ text: 'Lanjut', impact: -1, nextScene: 3 }],
+      },
+
+      // --- SCENE 3: Lia Pergi Ngambek ---
+      {
+        bg: './assets/bg_ruang_osis.png',
+        sprites: [
+          { id: 'sprite-faiz', pos: 'center', status: 'active' },
+          { id: 'sprite-lia', pos: 'left', status: 'inactive' },
+        ],
+        speaker: 'Lia',
+        dialog:
+          'Kakak kok ga ngelaksanain tugas kakak? *Lia langsung pergi sambil menatap sinis kak Faiz*',
+        choices: [
+          {
+            text: '*Waduh, Gawat ini*',
+            impact: 0,
+            nextScene: 4,
+          }, // Narator: Pulang ke rumah
+        ],
+      },
+
+      // --- SCENE 4: NARATOR TRANSISI - Setelah LDKS Selesai ---
+      {
+        bg: './assets/bg_rumah.png',
+        sprites: [],
+        speaker: 'Narator',
+        dialog:
+          'Acara LDKS selesai. Semua sudah pulang. Keesokannya, Kak Faiz merasa khawatir karena Lia marah kepadanya.',
+        choices: [
+          { text: '*Minta maaf*', impact: 0, nextScene: 6 }, // Minta maaf via WA
+        ],
+      },
+
+      // --- SCENE 5: NARATOR TRANSISI - Faiz Bekerja & Aman (Good Track) ---
+      {
+        bg: './assets/bg_lapangan.png',
+        sprites: [{ id: 'sprite-faiz', pos: 'center', status: 'active' }],
+        speaker: 'Narator',
+        dialog:
+          'Kak Faiz menepati janjinya. Ia menyelesaikan dokumentasi LDKS dari pagi sampai sore dengan pembawaan santai. Lia melihat itu dan tersenyum tipis.',
+        choices: [
+          { text: 'Lanjut ke Epilog Good Ending', impact: 1, nextScene: 11 }, // Lompat ke Epilog Langsung
+        ],
+      },
+
+      // --- SCENE 6: Minta Maaf via WA ---
+      {
+        bg: './assets/bg_rumah.png',
+        sprites: [{ id: 'sprite-faiz', pos: 'center', status: 'active' }],
+        speaker: 'Kak Faiz',
+        dialog: 'Hmm... minta maaf dulu deh ke Lia di grup.',
+        choices: [
+          {
+            text: 'Minta maaf yang tulus di grup TIK.',
+            impact: 2,
+            nextScene: 7, // Cek respon Lia (Dimaafkan)
+          },
+          {
+            text: 'Minta maaf setengah-setengah di grup TIK.',
+            impact: -2,
+            nextScene: 8, // Cek respon Lia (Ngambek)
+          },
+        ],
+      },
+
+      // --- SCENE 7: Respon WA - Dimaafkan (Good Ending Track) ---
+      {
+        bg: './assets/bg_chat_wa.png', // Background simulasi chat
+        sprites: [],
+        speaker: 'WA Group TIK',
+        dialog:
+          "Kak Faiz: 'Maaf ya semuanya, terutama Lia. Kemarin saya males-malesan.'\n\nLia: 'Iya Kak, dimaafin. Jangan diulangi lagi ya, aku kangen Kak Khai sama Kakak-kakak.'",
+        choices: [{ text: 'Lanjut.', impact: 1, nextScene: 10 }],
+      },
+
+      // --- SCENE 8: Respon WA - Ngambek Berlanjut (Bad Ending Track) ---
+      {
+        bg: './assets/bg_chat_wa.png', // Background simulasi chat
+        sprites: [],
+        speaker: 'WA Chat DM',
+        dialog:
+          "Kak Faiz: 'Lia, maaf ya kemarin saya males ngerjain tugas saya. Kamunya juga sih Lia, ngambekkan...' \n\nLia: (Read.). \n\nAjeng: 'Lia ngambeknya lama lho, Kak Faiz. Siap-siap aja.'",
+        choices: [{ text: 'Lanjut.', impact: 0, nextScene: 11 }],
+      },
+
+      // --- SCENE 9: Epilog Bad Ending (Ngambek) ---
+      {
+        bg: './assets/bg_ruang_osis_malam.png', // Suasana dingin
+        sprites: [{ id: 'sprite-faiz', pos: 'center', status: 'active' }],
+        speaker: 'Narator',
+        dialog:
+          'Permintaan maaf yang tidak terbuka membuat Lia ngambek berkepanjangan. Suasana TIK jadi tegang, dan Kak Faiz terus merasa bersalah. Maafnya nggak tahu kapan akan diterima, dan yang lain jadi ikut canggung.',
+        isEnding: true,
+      },
+
+      // --- SCENE 10: Epilog Good Ending (Dimaafkan) ---
+      {
+        bg: './assets/bg_ruang_osis_siang.png', // Suasana cerah
+        sprites: [
+          { id: 'sprite-lia', pos: 'left', status: 'active' },
+          { id: 'sprite-faiz', pos: 'right', status: 'active' },
+        ],
+        speaker: 'Narator',
+        dialog:
+          'Konflik selesai. Kak Faiz dan Lia kembali kompak. Kak Faiz kapok ngebuat Lia ngambek, dan bertekad untuk tidak akan pernah ngulangin kesalahan yang sama lagi.',
+        isEnding: true,
+      },
+    ],
+  },
+};
+
+// ====== 2. GAME STATE & ELEMEN DOM ======
+
+// State untuk melacak progres game
+let currentState = {
+  character: null, // 'raka', 'sinta', atau 'indra'
+  sceneIndex: 0,
+  score: 0,
+};
+
+// Mengambil elemen-elemen penting dari HTML
+const screens = {
+  start: document.getElementById('start-screen'),
+  game: document.getElementById('game-screen'),
+  ending: document.getElementById('ending-screen'),
+  farewell: document.getElementById('farewell-screen'),
+};
+
+const gameElements = {
+  sceneBg: document.getElementById('scene-bg'),
+  spriteContainer: document.getElementById('character-sprites'),
+  allSprites: document.querySelectorAll('.char-sprite'),
+  speakerName: document.getElementById('speaker-name'),
+  dialogText: document.getElementById('dialog-text'),
+  choicesBox: document.getElementById('choices-box'),
+};
+
+const endingElements = {
+  title: document.getElementById('ending-title'),
+  text: document.getElementById('ending-text'),
+};
+
+// ====== 3. FUNGSI-FUNGSI GAME ======
+
+/**
+ * Menampilkan layar tertentu dan menyembunyikan yang lain
+ * @param {string} screenName - 'start', 'game', 'ending', 'farewell'
+ */
+function showScreen(screenName) {
+  // Sembunyikan semua layar
+  for (let key in screens) {
+    screens[key].classList.remove('active');
+  }
+  // Tampilkan layar yang diminta
+  screens[screenName].classList.add('active');
+}
+
+/**
+ * Memulai game untuk karakter yang dipilih
+ * @param {string} charId - 'raka', 'sinta', 'indra'
+ */
+function startGame(charId) {
+  currentState.character = charId;
+  currentState.sceneIndex = 0;
+  currentState.score = 0;
+
+  console.log(`Memulai cerita untuk: ${charId}`);
+  renderScene();
+  showScreen('game');
+}
+
+/**
+ * Menampilkan scene saat ini berdasarkan currentState
+ */
+function renderScene() {
+  const charData = gameData[currentState.character];
+  const scene = charData.scenes[currentState.sceneIndex];
+
+  // 1. Update Background
+  gameElements.sceneBg.src = scene.bg;
+
+  // 2. Update Sprites (Karakter)
+  // Sembunyikan semua sprite dulu
+  gameElements.allSprites.forEach((sprite) => {
+    sprite.className = 'char-sprite'; // Reset class
+  });
+  // Tampilkan dan posisikan sprite yang ada di scene ini
+  if (scene.sprites) {
+    scene.sprites.forEach((spriteData) => {
+      const spriteEl = document.getElementById(spriteData.id);
+      if (spriteEl) {
+        spriteEl.classList.add(spriteData.status); // 'active' or 'inactive'
+        spriteEl.classList.add(`pos-${spriteData.pos}`); // 'pos-left', 'pos-center', 'pos-right'
+      }
+    });
+  }
+
+  // 3. Update Dialog Box
+  gameElements.speakerName.textContent = scene.speaker;
+  gameElements.dialogText.textContent = scene.dialog;
+
+  // 4. Update Pilihan
+  gameElements.choicesBox.innerHTML = ''; // Kosongkan pilihan lama
+
+  if (scene.choices) {
+    scene.choices.forEach((choice) => {
+      const button = document.createElement('button');
+      button.textContent = choice.text;
+      button.className = 'choice-btn';
+      button.onclick = () => makeChoice(choice);
+      gameElements.choicesBox.appendChild(button);
+    });
+  } else if (!scene.isEnding) {
+    // Jika tidak ada pilihan & bukan ending, buat tombol "Lanjut"
+    const button = document.createElement('button');
+    button.textContent = 'Lanjut →';
+    button.className = 'choice-btn';
+    // nextScene: -1 berarti lanjut ke scene berikutnya (index + 1)
+    button.onclick = () => makeChoice({ impact: 0, nextScene: -1 });
+    gameElements.choicesBox.appendChild(button);
+  }
+}
+
+/**
+ * Dipanggil saat pemain mengklik sebuah pilihan
+ * @param {object} choice - Objek pilihan yang diklik
+ */
+function makeChoice(choice) {
+  const charData = gameData[currentState.character];
+  const currentScene = charData.scenes[currentState.sceneIndex];
+
+  // 1. Tambah skor jika ada
+  if (choice.impact) {
+    currentState.score += choice.impact;
+    console.log(`Skor baru: ${currentState.score}`);
+  }
+
+  // 2. Cek apakah ini scene terakhir
+  if (currentScene.isEnding) {
+    showEnding();
+    return;
+  }
+
+  // 3. Tentukan scene berikutnya
+  if (choice.nextScene === -1) {
+    // Lanjut ke scene berikutnya secara berurutan
+    currentState.sceneIndex++;
+  } else {
+    // Lompat ke scene tertentu (jika Anda membuat cerita bercabang)
+    // Untuk simplisitas, kita asumsikan semua nextScene adalah index
+    currentState.sceneIndex = choice.nextScene;
+  }
+
+  // 4. Render scene baru
+  if (currentState.sceneIndex < charData.scenes.length) {
+    renderScene();
+  } else {
+    // Jika index melebihi jumlah scene, tampilkan ending
+    console.log('Mencapai akhir scene, tampilkan ending.');
+    showEnding();
+  }
+}
+
+/**
+ * Menampilkan layar ending berdasarkan skor
+ */
+function showEnding() {
+  const totalScenes = gameData[currentState.character].scenes.filter(
+    (s) => s.choices
+  ).length;
+  // Aturan simpel: jika skor > setengah dari total scene, Good Ending
+  const isGood = currentState.score > totalScenes / 2;
+
+  if (isGood) {
+    endingElements.title.textContent = 'Good Ending';
+    endingElements.text.textContent = `Kamu berhasil melewati semua tantangan dengan solid! Kenangan ini membuktikan betapa hebatnya kepemimpinan ${
+      gameData[currentState.character].name
+    }. (Skor: ${currentState.score})`;
+  } else {
+    endingElements.title.textContent = 'Bad Ending';
+    endingElements.text.textContent = `Yah, sepertinya ada beberapa hal yang bisa lebih baik. Tapi semua itu adalah bagian dari proses belajar. (Skor: ${currentState.score})`;
+  }
+
+  showScreen('ending');
+}
+
+// ====== 4. EVENT LISTENERS (Tombol Menu) ======
+
+// Listener untuk tombol-tombol di Menu Utama
+document.querySelectorAll('.char-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    startGame(button.dataset.char);
+  });
+});
+
+// Listener untuk tombol-tombol di Layar Ending
+document.getElementById('show-farewell-btn').addEventListener('click', () => {
+  showScreen('farewell');
+});
+
+document.getElementById('back-to-menu-btn').addEventListener('click', () => {
+  showScreen('start');
+});
+
+// Listener untuk tombol di Layar Perpisahan
+document.getElementById('restart-game-btn').addEventListener('click', () => {
+  showScreen('start');
+});
+
+// ====== 5. MULAI GAME ======
+// Tampilkan menu utama saat halaman dimuat
+showScreen('start');
