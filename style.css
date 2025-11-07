@@ -119,8 +119,8 @@ button#back-to-menu-btn:hover {
 }
 .char-sprite {
   position: absolute;
-  bottom: 0;
-  height: 90%; /* Tinggi karakter (sesuaikan) */
+  top: 25%;
+  width: 33%; /* Tinggi karakter (sesuaikan) */
   /* Sembunyikan semua sprite dulu */
   display: none;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -128,13 +128,25 @@ button#back-to-menu-btn:hover {
 
 /* Posisi Karakter (bisa ditambah) */
 .char-sprite.pos-left {
-  transform: translateX(-20%);
+  transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+  -moz-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  -o-transform: translateX(0%);
 }
 .char-sprite.pos-center {
-  transform: translateX(50%);
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
 }
 .char-sprite.pos-right {
-  transform: translateX(120%);
+  transform: translateX(200%);
+  -webkit-transform: translateX(200%);
+  -moz-transform: translateX(200%);
+  -ms-transform: translateX(200%);
+  -o-transform: translateX(200%);
 }
 
 /* Sprite yang 'active' akan terlihat */
