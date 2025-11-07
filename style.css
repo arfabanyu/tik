@@ -22,7 +22,7 @@ body {
 #game-wrapper {
   width: 100%;
   max-width: 800px; /* Lebar game */
-  height: 600px; /* Tinggi game */
+  height: 95%; /* Tinggi game */
   background-color: #000;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -166,7 +166,7 @@ button#back-to-menu-btn:hover {
   position: relative;
   z-index: 10;
   width: 95%;
-  height: 180px; /* Tinggi kotak dialog */
+  min-height: 180px; /* Tinggi kotak dialog */
   background-color: rgba(0, 0, 0, 0.85);
   border: 3px solid #4e9af1;
   border-radius: 10px;
