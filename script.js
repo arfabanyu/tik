@@ -4,19 +4,18 @@
 const gameData = {
   // --- Cerita Kak Raka ---
   samy: {
-    name: 'Kak Samy',
+    name: 'Samy',
     scenes: [
       // --- SCENE 0: KONTEKS AWAL (Kabur dari Tugas) ---
       {
         bg: './assets/bg_lapangan.png', // Latar di luar, tapi Samy canggung
         sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
-        speaker: 'Kak Samy',
+        speaker: 'Samy',
         dialog:
-          '(Batin) Aduh, panas. Males banget sama dokumentasi. Mending aku *farming* di Roblox sebentar. Di mana ya tempat yang aman dari Kak Khaila dan adek-adek? Ah, WC paling ujung sekolah aja deh, sepi.',
+          '(Buset, panas banget cuacanya. Jadi males dokum. Mending aku mancing di Roblox bentar. Di mana ya tempat yang aman? Ah, WC paling ujung sekolah boleh tuh, sepi.',
         choices: [
           {
             text: 'Lanjut (Pergi ke WC)',
-            impact: 0,
             nextScene: 1,
           },
         ],
@@ -28,17 +27,30 @@ const gameData = {
         sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
         speaker: 'Narator',
         dialog:
-          "Kak Samy sedang asyik teriak-teriak karena kalah war di Roblox. Tiba-tiba, temannya, Jerry, masuk WC dan bertanya, 'Sam, ngapain lu teriak-teriak?'",
+          'Samy asik teriak-teriak karena dapat ikan langka di Roblox. Tiba-tiba, Jerry, masuk WC dan bertanya.',
         choices: [
           {
-            text: 'Jawab dengan suara canggung pelan (karena Samy memang canggung).',
-            impact: 1,
+            text: 'Lanjut',
+
             nextScene: 2, // Meminimalkan kesalahpahaman
           },
+        ],
+      },
+      {
+        bg: './assets/bg_wc.png', // Latar WC
+        sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
+        speaker: 'Jery',
+        dialog: 'Sam, ngapain lu teriak-teriak?',
+        choices: [
           {
-            text: 'Jawab dengan teriak karena frustrasi (Fokus ke Roblox).',
-            impact: -1,
-            nextScene: 3, // Memperbesar kesalahpahaman
+            text: 'Jawab dengan suara pelan.',
+
+            nextScene: 3, // Meminimalkan kesalahpahaman
+          },
+          {
+            text: 'Jawab sambil teriak.',
+
+            nextScene: 4, // Memperbesar kesalahpahaman
           },
         ],
       },
@@ -47,20 +59,20 @@ const gameData = {
       {
         bg: './assets/bg_wc.png',
         sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
-        speaker: 'Kak Samy',
-        dialog:
-          '*Berbisik* Jerry, aku lagi war Roblox, jangan berisik. Aku kabur dari tugas dokum.',
-        choices: [{ text: 'Lanjut', impact: 1, nextScene: 4 }],
+        speaker: 'Samy',
+        dialog: '*Berbisik* Jerry, aku lagi mancing, jangan berisik.',
+        choices: [{ text: 'Lanjut', nextScene: 5 }],
       },
 
       // --- SCENE 3: Suara Keras (Menciptakan Kesalahpahaman) ---
+      // 4
       {
         bg: './assets/bg_wc.png',
         sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
-        speaker: 'Kak Samy',
+        speaker: 'Samy',
         dialog:
-          'JERRY! Tadi dia bunuh aku pakai *laser*! Awas lu! *Jerry hanya geleng-geleng kepala*. (Teriakan Samy terdengar sampai luar)',
-        choices: [{ text: 'Lanjut', impact: -1, nextScene: 4 }],
+          'JERRY! Tadi aku dapet ikan langka!!! *Jerry hanya geleng-geleng kepala*.',
+        choices: [{ text: 'Lanjut', nextScene: 6 }],
       },
 
       // --- SCENE 4: Lia Muncul ---
@@ -69,17 +81,18 @@ const gameData = {
         sprites: [{ id: 'sprite-lia', pos: 'left', status: 'active' }],
         speaker: 'Lia',
         dialog:
-          '*Lia baru saja lewat, mendengar teriakan dari dalam WC*. Ada suara Kak Samy? Sama siapa dia? Kok teriak-teriak gitu? *Lia mendekat penuh inisiatif*',
+          '*Lia tiba-tiba lewat, mendengar bisik bisik dari dalam WC*. Ada suara kak Samy? Sama siapa? Kok bisik-bisik gitu? *Lia kepo*',
         choices: [
           {
             text: 'Lanjut',
-            impact: 0,
-            nextScene: 5, // Momen klarifikasi/gosip
+
+            nextScene: 6, // Momen klarifikasi/gosip
           },
         ],
       },
 
       // --- SCENE 5: Konfrontasi Lia ---
+      // 6
       {
         bg: './assets/bg_wc_luar.png',
         sprites: [
@@ -88,22 +101,23 @@ const gameData = {
         ],
         speaker: 'Lia',
         dialog:
-          'Kak Samy! Kenapa kakak di sini?! Aku denger kakak teriak-teriak sama Jerry dari dalam? Kakak... lagi ngapain?',
+          'Kak Samy! Kenapa kakak di sini?! Aku denger kakak ngobrol... sama... Jerry? Kakak... lagi ngapain?',
         choices: [
           {
-            text: "Klarifikasi Canggung: 'Aku... aku lagi main Roblox, Lia.' (Sambil senyum-senyum pegang hidung)",
-            impact: 2,
-            nextScene: 6, // Good Ending Track
+            text: 'Aku... aku lagi main Roblox, Lia.',
+
+            nextScene: 7, // Good Ending Track
           },
           {
-            text: "Kabur: 'A-aku duluan! Nanti aku traktir deh!' (Mengulangi sifat lama)",
-            impact: -2,
-            nextScene: 7, // Bad Ending Track
+            text: '*Kabur*',
+
+            nextScene: 8, // Bad Ending Track
           },
         ],
       },
 
       // --- SCENE 6: Klarifikasi Berhasil (Good Track) ---
+      // 7
       {
         bg: './assets/bg_koridor.png',
         sprites: [
@@ -112,11 +126,12 @@ const gameData = {
         ],
         speaker: 'Lia',
         dialog:
-          '*Ketawa kecil* Oohh, main Roblox! Pantesan. Aku kira... *Lia langsung ngakak* Yaudah deh, Kak. Mending balik ke tugas. Jangan kabur-kabur terus, nanti diomelin Kak Khaila.',
-        choices: [{ text: 'Lanjut', impact: 1, nextScene: 8 }],
+          '*Ketawa kecil* Oohh, main Roblox! Pantesan. Aku kira... *Lia langsung ngakak* Lagian kakak ngapain main roblox di sini. Lanjut dokum lagi sana. Jangan kabur-kaburan terus, nanti diomelin Kak Khaila.',
+        choices: [{ text: 'Lanjut', nextScene: 9 }],
       },
 
       // --- SCENE 7: Kabur & Gosip Menyebar (Bad Track) ---
+      // 8
       {
         bg: './assets/bg_koridor.png',
         sprites: [
@@ -125,21 +140,23 @@ const gameData = {
         ],
         speaker: 'Lia',
         dialog:
-          'Banyu! Banyu! Tadi Kak Samy kabur dari WC, mukanya panik! Jangan-jangan beneran dia lagi ngapa-ngapain sama Jerry! *Lia berbisik, tapi kedengaran cempreng*',
-        choices: [{ text: 'Lanjut', impact: 0, nextScene: 9 }],
+          'Arfa! Arfa! Tadi Samy kabur dari WC, mukanya panik! Jangan-jangan dia lagi ngapa-ngapain sama Jerry! *Lia berbisik sambil cekikikan*',
+        choices: [{ text: 'Lanjut', nextScene: 10 }],
       },
 
       // --- SCENE 8: Epilog Good Ending (Klarifikasi Berhasil) ---
+      // 9
       {
         bg: './assets/bg_lapangan.png',
         sprites: [{ id: 'sprite-samy', pos: 'center', status: 'active' }],
         speaker: 'Narator',
         dialog:
-          'Lia tidak menyebar gosip karena Kak Samy memilih jujur dan bertanggung jawab (setelah main Roblox). Kak Samy kembali ke lapangan dan melanjutkan tugas. Gosip *gay* berhasil dibungkam oleh kejujuran yang canggung. TIK tetap solid.',
+          'Lia tidak menyebar gosip karena Samy langsung klarifikasi. Samy kembali ke lapangan dan lanjut ngedokum. Gosip aneh berhasil dihindari. TIK tetap aman.',
         isEnding: true,
       },
 
       // --- SCENE 9: Epilog Bad Ending (Jadi Bahan Candan) ---
+      // 10
       {
         bg: './assets/bg_lapangan.png',
         sprites: [
@@ -149,7 +166,7 @@ const gameData = {
         ],
         speaker: 'Narator',
         dialog:
-          "Gosip menyebar cepat di tim TIK. Setiap Kak Samy muncul, Lia, Banyu, bahkan Ajeng, akan melirik dan tertawa kecil. 'Der Refan' (Kak Faiz) ikut-ikutan menyindirnya. Kak Samy, yang canggung, hanya bisa tersenyum dan memegang hidung. Ia akan menjadi bahan candaan TIK hingga akhir kepengurusan.",
+          "Gosip menyebar cepat di TIK. Setiap Samy muncul, Lia, Banyu, bahkan Ajeng, akan melirik dan tertawa kecil. 'Der Refan' ikut-ikutan nyindir. Samy, yang canggung, hanya bisa tersenyum dan memegang hidung. Ia akan menjadi bahan candaan TIK hingga akhir kepengurusan.",
         isEnding: true,
       },
     ],
@@ -167,7 +184,7 @@ const gameData = {
         choices: [
           {
             text: 'Lanjut',
-            impact: 0,
+
             nextScene: 1, // Mendapatkan informasi krusial
           },
         ],
@@ -182,64 +199,64 @@ const gameData = {
         choices: [
           {
             text: 'Telfon Samy.',
-            impact: 1,
+
             nextScene: 2, // Mendapatkan informasi krusial
           },
           {
             text: 'Langsung ke lapangan.',
-            impact: 0,
+
             nextScene: 6, // Langsung ke lapangan tanpa persiapan
           },
         ],
       },
 
-      // --- SCENE 1: Omelin Kak Samy (Good Track) ---
+      // --- SCENE 1: Omelin Samy (Good Track) ---
       {
         bg: './assets/bg_ruang_osis.png',
         sprites: [
           { id: 'sprite-khaila', pos: 'center', status: 'active' },
-          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Kak Samy hanya dalam dialog
+          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Samy hanya dalam dialog
         ],
         speaker: 'Khaila',
         dialog: 'Halo, Sam! Lu di mana?! Ini udah mulai!',
         choices: [
-          { text: 'Lanjut', impact: 0, nextScene: 3 }, // Poin karena tahu info tripod
+          { text: 'Lanjut', nextScene: 3 }, // Poin karena tahu info tripod
         ],
       },
       {
         bg: './assets/bg_ruang_osis.png',
         sprites: [
           { id: 'sprite-khaila', pos: 'center', status: 'active' },
-          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Kak Samy hanya dalam dialog
+          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Samy hanya dalam dialog
         ],
         speaker: 'Samy',
         dialog: 'Lagi jajan bentar di bang Memet.',
         choices: [
-          { text: 'Lanjut', impact: 0, nextScene: 4 }, // Poin karena tahu info tripod
+          { text: 'Lanjut', nextScene: 4 }, // Poin karena tahu info tripod
         ],
       },
       {
         bg: './assets/bg_ruang_osis.png',
         sprites: [
           { id: 'sprite-khaila', pos: 'center', status: 'active' },
-          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Kak Samy hanya dalam dialog
+          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Samy hanya dalam dialog
         ],
         speaker: 'Khaila',
         dialog: 'Ya udah, cepetan! ini voli ga ada yang dokum.',
         choices: [
-          { text: 'Lanjut', impact: 0, nextScene: 5 }, // Poin karena tahu info tripod
+          { text: 'Lanjut', nextScene: 5 }, // Poin karena tahu info tripod
         ],
       },
       {
         bg: './assets/bg_ruang_osis.png',
         sprites: [
           { id: 'sprite-khaila', pos: 'center', status: 'active' },
-          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Kak Samy hanya dalam dialog
+          { id: 'sprite-samy', pos: 'left', status: 'inactive' }, // Samy hanya dalam dialog
         ],
         speaker: 'Khaila',
         dialog: '*Matiin telepon*',
         choices: [
-          { text: 'Lanjut ke lapangan', impact: 0, nextScene: 6 }, // Poin karena tahu info tripod
+          { text: 'Lanjut ke lapangan', nextScene: 6 }, // Poin karena tahu info tripod
         ],
       },
 
@@ -256,7 +273,7 @@ const gameData = {
         choices: [
           {
             text: 'Lanjut.',
-            impact: 0,
+
             nextScene: 7, // Mengabaikan peringatan
           },
         ],
@@ -273,12 +290,12 @@ const gameData = {
         choices: [
           {
             text: 'Maju',
-            impact: 1,
+
             nextScene: 8, // Poin karena peduli
           },
           {
             text: 'Tetep di tempat.',
-            impact: 0,
+
             nextScene: 12, // Mengabaikan peringatan
           },
         ],
@@ -295,7 +312,7 @@ const gameData = {
         choices: [
           {
             text: 'Lanjut',
-            impact: 0,
+
             nextScene: 9, // Poin karena peduli
           },
         ],
@@ -312,7 +329,7 @@ const gameData = {
         choices: [
           {
             text: 'Lanjut',
-            impact: 0,
+
             nextScene: 10, // Poin karena peduli
           },
         ],
@@ -329,7 +346,7 @@ const gameData = {
         choices: [
           {
             text: 'Lanjut',
-            impact: 0,
+
             nextScene: 11, // Poin karena peduli
           },
         ],
@@ -357,7 +374,7 @@ const gameData = {
 
   // --- Cerita Kak Indra (Dummy) ---
   faiz: {
-    name: 'Kak Faiz',
+    name: 'Faiz',
     scenes: [
       // --- SCENE 0: KONTEKS AWAL (Narator) ---
       {
@@ -369,7 +386,7 @@ const gameData = {
         choices: [
           {
             text: 'Lanjut',
-            impact: 0,
+
             nextScene: 1,
           },
         ],
@@ -387,12 +404,12 @@ const gameData = {
         choices: [
           {
             text: '*Ngangguk*',
-            impact: -1,
+
             nextScene: 2,
           },
           {
             text: 'Iya, iya, nanti saya IGS.',
-            impact: 1,
+
             nextScene: 5, // Lompat ke Narator: Faiz Bekerja
           },
         ],
@@ -407,7 +424,7 @@ const gameData = {
         ],
         speaker: 'Kak Faiz',
         dialog: '*Kabur-kaburan*',
-        choices: [{ text: 'Lanjut', impact: -1, nextScene: 3 }],
+        choices: [{ text: 'Lanjut', nextScene: 3 }],
       },
 
       // --- SCENE 3: Lia Pergi Ngambek ---
@@ -423,7 +440,7 @@ const gameData = {
         choices: [
           {
             text: '*Waduh, Gawat ini*',
-            impact: 0,
+
             nextScene: 4,
           }, // Narator: Pulang ke rumah
         ],
@@ -437,7 +454,7 @@ const gameData = {
         dialog:
           'Acara LDKS selesai. Semua sudah pulang. Keesokannya, Kak Faiz merasa khawatir karena Lia marah kepadanya.',
         choices: [
-          { text: '*Minta maaf*', impact: 0, nextScene: 6 }, // Minta maaf via WA
+          { text: '*Minta maaf*', nextScene: 6 }, // Minta maaf via WA
         ],
       },
 
@@ -449,7 +466,7 @@ const gameData = {
         dialog:
           'Kak Faiz menepati janjinya. Ia menyelesaikan dokumentasi LDKS dari pagi sampai sore dengan pembawaan santai. Lia melihat itu dan tersenyum tipis.',
         choices: [
-          { text: 'Lanjut ke Epilog Good Ending', impact: 1, nextScene: 11 }, // Lompat ke Epilog Langsung
+          { text: 'Lanjut ke Epilog Good Ending', nextScene: 11 }, // Lompat ke Epilog Langsung
         ],
       },
 
@@ -462,12 +479,12 @@ const gameData = {
         choices: [
           {
             text: 'Minta maaf yang tulus di grup TIK.',
-            impact: 2,
+
             nextScene: 7, // Cek respon Lia (Dimaafkan)
           },
           {
             text: 'Minta maaf setengah-setengah di grup TIK.',
-            impact: -2,
+
             nextScene: 8, // Cek respon Lia (Ngambek)
           },
         ],
@@ -480,7 +497,7 @@ const gameData = {
         speaker: 'WA Group TIK',
         dialog:
           "Kak Faiz: 'Maaf ya semuanya, terutama Lia. Kemarin saya males-malesan.'\n\nLia: 'Iya Kak, dimaafin. Jangan diulangi lagi ya, aku kangen Kak Khai sama Kakak-kakak.'",
-        choices: [{ text: 'Lanjut.', impact: 1, nextScene: 10 }],
+        choices: [{ text: 'Lanjut.', nextScene: 10 }],
       },
 
       // --- SCENE 8: Respon WA - Ngambek Berlanjut (Bad Ending Track) ---
@@ -490,7 +507,7 @@ const gameData = {
         speaker: 'WA Chat DM',
         dialog:
           "Kak Faiz: 'Lia, maaf ya kemarin saya males ngerjain tugas saya. Kamunya juga sih Lia, ngambekkan...' \n\nLia: (Read.). \n\nAjeng: 'Lia ngambeknya lama lho, Kak Faiz. Siap-siap aja.'",
-        choices: [{ text: 'Lanjut.', impact: 0, nextScene: 11 }],
+        choices: [{ text: 'Lanjut.', nextScene: 11 }],
       },
 
       // --- SCENE 9: Epilog Bad Ending (Ngambek) ---
@@ -626,7 +643,7 @@ function renderScene() {
     button.textContent = 'Lanjut →';
     button.className = 'choice-btn';
     // nextScene: -1 berarti lanjut ke scene berikutnya (index + 1)
-    button.onclick = () => makeChoice({ impact: 0, nextScene: -1 });
+    button.onclick = () => makeChoice({ nextScene: -1 });
     gameElements.choicesBox.appendChild(button);
   }
 }
@@ -639,25 +656,22 @@ function makeChoice(choice) {
   const charData = gameData[currentState.character];
   const currentScene = charData.scenes[currentState.sceneIndex];
 
-  // 1. Tambah skor jika ada
-  if (choice.impact) {
-    currentState.score += choice.impact;
-    console.log(`Skor baru: ${currentState.score}`);
-  }
+  // 1. Logika skor dihilangkan
+  // if (choice.impact) {
+  //   currentState.score += choice.impact;
+  //   console.log(`Skor baru: ${currentState.score}`);
+  // }
 
   // 2. Cek apakah ini scene terakhir
   if (currentScene.isEnding) {
-    showEnding();
+    showEnding(currentScene);
     return;
   }
 
-  // 3. Tentukan scene berikutnya
+  // 3. Tentukan scene berikutnya (logika tetap)
   if (choice.nextScene === -1) {
-    // Lanjut ke scene berikutnya secara berurutan
     currentState.sceneIndex++;
   } else {
-    // Lompat ke scene tertentu (jika Anda membuat cerita bercabang)
-    // Untuk simplisitas, kita asumsikan semua nextScene adalah index
     currentState.sceneIndex = choice.nextScene;
   }
 
@@ -665,31 +679,59 @@ function makeChoice(choice) {
   if (currentState.sceneIndex < charData.scenes.length) {
     renderScene();
   } else {
-    // Jika index melebihi jumlah scene, tampilkan ending
-    console.log('Mencapai akhir scene, tampilkan ending.');
-    showEnding();
+    // Fallback: Jika index melebihi batas, ambil scene terakhir sebagai ending
+    showEnding(charData.scenes[charData.scenes.length - 1]);
   }
 }
 
 /**
  * Menampilkan layar ending berdasarkan skor
  */
-function showEnding() {
-  const totalScenes = gameData[currentState.character].scenes.filter(
-    (s) => s.choices
-  ).length;
-  // Aturan simpel: jika skor > setengah dari total scene, Good Ending
-  const isGood = currentState.score > totalScenes / 2;
+/**
+ * Menampilkan layar ending berdasarkan scene terakhir yang dicapai
+ * @param {object} endingScene - Objek scene yang memiliki isEnding: true
+ */
+function showEnding(endingScene) {
+  const sceneIndex =
+    gameData[currentState.character].scenes.indexOf(endingScene);
+  let title = 'Ending';
+  let text = endingScene.dialog; // Gunakan dialog dari scene ending sebagai teks utama
 
-  if (isGood) {
-    endingElements.title.textContent = 'Good Ending';
-    endingElements.text.textContent = `Kamu berhasil melewati semua tantangan dengan solid! Kenangan ini membuktikan betapa hebatnya kepemimpinan ${
-      gameData[currentState.character].name
-    }. (Skor: ${currentState.score})`;
-  } else {
-    endingElements.title.textContent = 'Bad Ending';
-    endingElements.text.textContent = `Yah, sepertinya ada beberapa hal yang bisa lebih baik. Tapi semua itu adalah bagian dari proses belajar. (Skor: ${currentState.score})`;
+  let isGoodEnding = false;
+
+  // Menentukan apakah ini Good Ending atau Bad Ending berdasarkan indeks scene
+  switch (currentState.character) {
+    case 'samy':
+      // Good Ending Samy ada di index 9
+      isGoodEnding = sceneIndex === 9;
+      break;
+    case 'khaila':
+      // Good Ending Khaila ada di index 12
+      isGoodEnding = sceneIndex === 12;
+      break;
+    case 'faiz':
+      // Good Ending Faiz ada di index 10
+      isGoodEnding = sceneIndex === 10;
+      break;
+    default:
+      isGoodEnding = false; // Fallback
   }
+
+  // Atur judul dan teks
+  if (isGoodEnding) {
+    title = 'Good Ending 😇';
+    // Tambahkan teks penutup kustom
+    text +=
+      '\n\n**Kamu berhasil mengambil keputusan yang tepat!** Konflik berhasil diselesaikan dengan baik.';
+  } else {
+    title = 'Bad Ending 😰';
+    // Tambahkan teks penutup kustom
+    text +=
+      '\n\n**Keputusanmu mengarah pada hasil yang kurang baik.** Semua ini pelajaran berharga untuk masa depan.';
+  }
+
+  endingElements.title.textContent = title;
+  endingElements.text.textContent = text; // Tampilkan dialog scene ending
 
   showScreen('ending');
 }
