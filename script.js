@@ -445,7 +445,7 @@ const gameData = {
     },
     faiz: {
       title: 'Dear Kak Faiz,',
-      text: 'Ciee... der Refan udah demis, abis demis langsung ..., wkwk. Makasih banyak ya kak atas semua bimbingannya. Kak Faiz baik, tidak sombong, dan rajin menabung. Saya kalau ngeliat kakak tuh pembawaannya santai trus juga keliatan bisa diandelin, wkwk.',
+      text: 'Ciee... der Refan udah demis, abis demis langsung molor mulu nih, wkwk. Makasih banyak ya kak atas semua bimbingannya. Kak Faiz baik, tidak sombong, dan rajin menabung. Saya kalau ngeliat kakak tuh pembawaannya santai trus juga keliatan bisa diandelin, wkwk.',
     },
     default: {
       title: 'Terima Kasih, Kakak-Kakak TIK!',
